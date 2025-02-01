@@ -5,25 +5,42 @@ import { ChatMessage } from './ChatMessage';
 import { getChatResponse } from '../utils/ai';
 import { SpeechManager } from '../utils/speech';
 
+const financialTips = [
+  "Save 20% of your monthly income for long-term financial goals",
+  "Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings",
+  "Build an emergency fund covering 3-6 months of expenses",
+  "Start investing early to benefit from compound interest",
+  "Review and rebalance your investment portfolio quarterly",
+  "Pay off high-interest debt before focusing on investments",
+  "Max out your retirement accounts before other investments",
+  "Keep your credit utilization below 30% for a good credit score",
+  "Diversify your investment portfolio across multiple assets",
+  "Create and follow a monthly budget to track expenses"
+];
+
 const FinancialTip: React.FC<{ tip: string }> = ({ tip }) => (
   <div className="financial-tip rounded-lg p-4 shadow-sm hover-scale">
     <div className="flex items-center gap-2 mb-2">
       <Lightbulb className="w-5 h-5 text-yellow-500" />
-      <span className="font-semibold text-gray-700">Quick Tip</span>
+      <span className="font-semibold text-gray-700">Financial Tip</span>
     </div>
     <p className="text-sm text-gray-600">{tip}</p>
   </div>
 );
 
-const financialTips = [
-  "Set aside 20% of your income for savings and investments.",
-  "Review your budget monthly to track spending patterns.",
-  "Consider automating your bill payments to avoid late fees.",
-];
-
 export const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', content: 'Hello! I\'m MoneyMentor, your AI financial advisor. How can I help you today?' }
+    { 
+      role: 'bot', 
+      content: 'Hello! I\'m MoneyMentor, your AI financial advisor. I can help you with:\n\n' +
+               '• Budgeting and saving strategies\n' +
+               '• Investment advice and portfolio planning\n' +
+               '• Debt management and credit improvement\n' +
+               '• Retirement planning\n' +
+               '• Tax efficiency tips\n' +
+               '• General financial guidance\n\n' +
+               'How can I assist you with your financial goals today?' 
+    }
   ]);
   const [input, setInput] = useState('');
   const [botState, setBotState] = useState<ChatBotState>({ 
@@ -34,7 +51,6 @@ export const ChatBot: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [speechManager] = useState(() => {
     const manager = new SpeechManager();
-    // Make speech manager globally available for EmoBot
     window.speechManager = manager;
     return manager;
   });
@@ -74,7 +90,7 @@ export const ChatBot: React.FC = () => {
       speakMessage(response);
     } catch (error) {
       setBotState(prev => ({ ...prev, mood: 'neutral' }));
-      const errorMessage = 'I apologize, but I encountered an error. Please try again.';
+      const errorMessage = 'I apologize, but I encountered an error. Please try asking your financial question again.';
       setMessages(prev => [...prev, { role: 'bot', content: errorMessage }]);
       speakMessage(errorMessage);
     } finally {
@@ -91,23 +107,23 @@ export const ChatBot: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Floating Finance Icons with Tooltips */}
+      {/* Financial Icons with Tooltips */}
       <div className="fixed top-10 right-10 animate-bounce group">
         <DollarSign className="w-6 h-6 text-green-400" />
         <span className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded -left-20">
-          Track Expenses
+          Budget Planning
         </span>
       </div>
       <div className="fixed top-20 right-16 animate-bounce delay-100 group">
         <PiggyBank className="w-6 h-6 text-blue-400" />
         <span className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded -left-20">
-          Save Money
+          Savings Goals
         </span>
       </div>
       <div className="fixed top-30 right-24 animate-bounce delay-200 group">
         <CreditCard className="w-6 h-6 text-purple-400" />
         <span className="absolute hidden group-hover:block bg-black text-white text-xs p-2 rounded -left-20">
-          Manage Credit
+          Credit Management
         </span>
       </div>
       <div className="fixed top-40 right-12 animate-bounce delay-300 group">
@@ -124,7 +140,7 @@ export const ChatBot: React.FC = () => {
           <div className="flex justify-between items-center">
             <div className="text-white">
               <h1 className="text-2xl font-bold">MoneyMentor</h1>
-              <p className="text-blue-200">Your AI Financial Advisor</p>
+              <p className="text-blue-200">Your Personal Financial Advisor</p>
             </div>
             <button
               onClick={toggleMute}
@@ -169,7 +185,7 @@ export const ChatBot: React.FC = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about your finances..."
+                placeholder="Ask me about your finances..."
                 className="flex-1 rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
                 disabled={isLoading}
               />
