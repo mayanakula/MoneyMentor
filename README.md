@@ -13,10 +13,13 @@ Features:
 ## Installation Instructions
 1. Clone the repository:
    git clone https://github.com/mayanakula/MoneyMentor.git
+
 2.Navigate to the project directory:
    cd MoneyMentor
+
 3.Install dependencies:
    npm install
+
 4.Start the application:
    npm start
 
