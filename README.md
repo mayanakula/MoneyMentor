@@ -10,7 +10,7 @@ Features:
 - Tax Assistance: Get help understanding tax deductions, saving strategies, and compliance.
 - Interactive Interface: A user-friendly, conversational interface for easy interaction and learning.
 
-## Installation Instructions
+## Installation Instructions:
 1. Clone the repository:
    git clone https://github.com/mayanakula/MoneyMentor.git
 
@@ -23,7 +23,7 @@ Features:
 4.Start the application:
    npm start
 
-## Usage
+## Usage:
 
 Once the chatbot is running, simply type in your financial queries in the chat interface. The chatbot will analyze your input and provide real-time, personalized financial advice.
 
