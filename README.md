@@ -23,7 +23,8 @@ Features:
 4.Start the application:
    npm start
 
-Usage
+## Usage
+
 Once the chatbot is running, simply type in your financial queries in the chat interface. The chatbot will analyze your input and provide real-time, personalized financial advice.
 
 Example:
@@ -32,13 +33,18 @@ Example:
 "What are the latest stock trends?"
 "How can I save more on taxes this year?"
 
-Technology Stack:
+## Technology Stack:
 Node.js: For the backend API and chatbot functionality.
+
 React: For the frontend interface.
+
 TensorFlow: For machine learning and natural language processing.
+
 Financial APIs: To pull real-time financial data and insights.
+
 Cloud Infrastructure: Ensures smooth, scalable performance.
 
+## Contributions:
 We welcome contributions! If you'd like to help improve the chatbot, follow these steps:
 Fork the repository.
 Create a new branch.
@@ -48,5 +54,5 @@ License
 MIT License
 Copyright (c) 2025 Mayan Akula
 
-Contact Information:
+## Contact Information:
 For any questions or inquiries, feel free to reach out to me at mayanakula2005@gmail.com
